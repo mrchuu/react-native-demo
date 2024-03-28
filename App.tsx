@@ -1,8 +1,10 @@
 import {useState} from 'react';
 import {
   Button,
+  FlatList,
   Image,
   Linking,
+  RefreshControl,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -13,14 +15,6 @@ import {
 
 export default function App() {
   const [name, setName] = useState('Chu Son');
-  const styles = StyleSheet.create({
-    body: {
-      flex: 1,
-      flexDirection: 'column',
-      // backgroundColor: '#80e5c2',
-      padding: 10,
-    },
-  });
   const [items, setItems] = useState([
     {
       key: 1,
@@ -73,60 +67,43 @@ export default function App() {
       value: 'Item 10',
     },
   ]);
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = () => {
+    setRefreshing(true);
+    setItems([
+      ...items,
+      {
+        key: 111,
+        image:
+          'https://product.hstatic.net/1000304920/product/the-weeknd-dawn-fm-phien-ban-co-chu-ky-dia-cd_685b909311df4ecfbe0c9923b275a8d3.jpeg',
+        value: 'Item 111',
+      },
+    ]);
+    setRefreshing(false);
+  };
+  const styles = StyleSheet.create({
+    body: {
+      padding: 10,
+    },
+  });
+
   return (
     <View style={styles.body}>
-      <View
-        style={{
-          flex: 1.3,
-          borderRadius: 10,
-          // backgroundColor: 'rgb(107, 136, 239)',
-          padding: 10,
-          borderWidth: 1,
-          alignContent: "center"
-        }}>
-        <ScrollView horizontal>
-          {items.map((i, index) => (
-            <View
-              key={i.key}
-              style={{
-                backgroundColor: 'rgba(232, 232, 232, 0.5)',
-              }}>
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: 'column',
-                  paddingVertical: 5,
-                  justifyContent: "space-between"
-                }}>
-                <View style={{backgroundColor: "red", width: 110, height: "100%", marginHorizontal: 3}}>
-                  <Image
-                    src={i.image}
-                    style={{
-                      width: 100,
-                      height: 100,
-                      resizeMode: 'cover',
-                      borderRadius: 5,
-                      marginRight: 10,
-                    }}
-                  />
-                  <View style={{flex: 1, minHeight: '100%'}}>
-                    <Text
-                      style={{
-                        fontSize: 18,
-                        fontWeight: '500',
-                        color: 'black',
-                        paddingLeft: 2,
-                      }}>
-                      {i.value}
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-          ))}
-        </ScrollView>
-      </View>
-      <View style={{flex: 5.7}}></View>
+      <FlatList
+      numColumns={2}
+        data={items}
+        renderItem={({item, index}) => (
+          <View
+            key={index}
+            style={{
+              backgroundColor: '#97E7E1',
+              height: 240,
+              width: '48%',
+              marginHorizontal: 4,
+              marginBottom: 8,
+            }}></View>
+        )}
+      />
     </View>
   );
 }
