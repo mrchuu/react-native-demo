@@ -1,109 +1,65 @@
-import {useState} from 'react';
-import {
-  Button,
-  FlatList,
-  Image,
-  Linking,
-  RefreshControl,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import Login from './src/view/Login';
+import Chat from './src/view/content/Chat'; 
+import Story from './src/view/content/Story';
+import {createMaterialBottomTabNavigator} from 'react-native-paper/react-navigation';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import AntDesignIcons from 'react-native-vector-icons/AntDesign';
+import {useTheme} from 'react-native-paper';
+import Contact from './src/view/content/Contact';
 
+
+const Stack = createStackNavigator();
+const Tab = createMaterialBottomTabNavigator();
+const ContentTabs = () => (
+  <Tab.Navigator
+    barStyle={{backgroundColor: 'rgb(242, 242, 242)'}}
+    shifting={false}
+    activeColor="#097BDA">
+    <Tab.Screen
+      name="Chat"
+      component={Chat}
+      options={{
+        tabBarIcon: ({color}) => (
+          <MaterialCommunityIcons name="chat" size={25} color={color} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Contact"
+      component={Contact}
+      options={{
+        tabBarIcon: ({color}) => (
+          <AntDesignIcons name="contacts" size={25} color={color} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Story"
+      component={Story}
+      options={{
+        tabBarIcon: ({color}) => (
+          <MaterialIcons name="web-stories" size={25} color={color} />
+        ),
+      }}
+    />
+  </Tab.Navigator>
+);
 export default function App() {
-  const [name, setName] = useState('Chu Son');
-  const [items, setItems] = useState([
-    {
-      key: 1,
-      image: 'https://i.ytimg.com/vi/-P2b0cDVJiY/maxresdefault.jpg',
-      value: 'Item 1',
-    },
-    {
-      key: 2,
-      image: 'https://i.ytimg.com/vi/-P2b0cDVJiY/maxresdefault.jpg',
-      value: 'Item 2',
-    },
-    {
-      key: 3,
-      image: 'https://i.ytimg.com/vi/-P2b0cDVJiY/maxresdefault.jpg',
-      value: 'Item 3',
-    },
-    {
-      key: 4,
-      image: 'https://i.ytimg.com/vi/-P2b0cDVJiY/maxresdefault.jpg',
-      value: 'Item 4',
-    },
-    {
-      key: 5,
-      image: 'https://i.ytimg.com/vi/-P2b0cDVJiY/maxresdefault.jpg',
-      value: 'Item 5',
-    },
-    {
-      key: 6,
-      image: 'https://i.ytimg.com/vi/-P2b0cDVJiY/maxresdefault.jpg',
-      value: 'Item 6',
-    },
-    {
-      key: 7,
-      image: 'https://i.ytimg.com/vi/-P2b0cDVJiY/maxresdefault.jpg',
-      value: 'Item 7',
-    },
-    {
-      key: 8,
-      image: 'https://i.ytimg.com/vi/-P2b0cDVJiY/maxresdefault.jpg',
-      value: 'Item 8',
-    },
-    {
-      key: 9,
-      image: 'https://i.ytimg.com/vi/-P2b0cDVJiY/maxresdefault.jpg',
-      value: 'Item 9',
-    },
-    {
-      key: 10,
-      image: 'https://i.ytimg.com/vi/-P2b0cDVJiY/maxresdefault.jpg',
-      value: 'Item 10',
-    },
-  ]);
-  const [refreshing, setRefreshing] = useState(false);
-  const onRefresh = () => {
-    setRefreshing(true);
-    setItems([
-      ...items,
-      {
-        key: 111,
-        image:
-          'https://product.hstatic.net/1000304920/product/the-weeknd-dawn-fm-phien-ban-co-chu-ky-dia-cd_685b909311df4ecfbe0c9923b275a8d3.jpeg',
-        value: 'Item 111',
-      },
-    ]);
-    setRefreshing(false);
-  };
-  const styles = StyleSheet.create({
-    body: {
-      padding: 10,
-    },
-  });
-
+  const theme = useTheme();
+  theme.colors.secondaryContainer = 'transperent';
   return (
-    <View style={styles.body}>
-      <FlatList
-      numColumns={2}
-        data={items}
-        renderItem={({item, index}) => (
-          <View
-            key={index}
-            style={{
-              backgroundColor: '#97E7E1',
-              height: 240,
-              width: '48%',
-              marginHorizontal: 4,
-              marginBottom: 8,
-            }}></View>
-        )}
-      />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen name="Content" component={ContentTabs} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
