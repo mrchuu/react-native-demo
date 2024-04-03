@@ -1,7 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Login from './src/view/Login';
-import Chat from './src/view/content/Chat'; 
+import Chat from './src/view/content/Chat';
 import Story from './src/view/content/Story';
 import {createMaterialBottomTabNavigator} from 'react-native-paper/react-navigation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -9,7 +9,6 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesignIcons from 'react-native-vector-icons/AntDesign';
 import {useTheme} from 'react-native-paper';
 import Contact from './src/view/content/Contact';
-
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -58,7 +57,11 @@ export default function App() {
           component={Login}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="Content" component={ContentTabs} />
+        <Stack.Screen
+          name="Content"
+          component={ContentTabs}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

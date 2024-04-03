@@ -17,11 +17,11 @@ import {
 } from 'react-native';
 import Toast from 'react-native-toast-message';
 import Modal from 'react-native-modal';
+import ContentTemplate from '../../template/ContentTemplate';
 export default function Chat() {
   const styles = StyleSheet.create({
     body: {
       flex: 1,
-      // backgroundColor: "red"
     },
   });
   const showAlert = () => {
@@ -67,58 +67,58 @@ export default function Chat() {
     );
   };
   const [showModal, setShowModal] = useState(false);
-  const pressHandler = () =>{
-    
-  }
+  const pressHandler = () => {};
   return (
-    <View style={styles.body}>
-      <Modal
-        isVisible={showModal}
-        animationInTiming={600}
-        animationOutTiming={600}
-        backdropTransitionOutTiming={700}
-        style={{paddingTop: 50, margin: 0}}>
+    <ContentTemplate title={"Chat"}>
+      <View style={styles.body}>
+        <Modal
+          isVisible={showModal}
+          animationInTiming={600}
+          animationOutTiming={600}
+          backdropTransitionOutTiming={700}
+          style={{paddingTop: 50, margin: 0}}>
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: 'white',
+              borderTopLeftRadius: 5,
+              borderTopRightRadius: 5,
+              margin: 0,
+              paddingTop: 20,
+            }}>
+            <Text>Hello!</Text>
+
+            <Button
+              title="Hide modal"
+              onPress={e => {
+                setShowModal(false);
+              }}
+            />
+          </View>
+        </Modal>
         <View
           style={{
-            flex: 1,
-            backgroundColor: 'white',
-            borderTopLeftRadius: 5,
-            borderTopRightRadius: 5,
-            margin: 0,
-            paddingTop: 20,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            paddingTop: 400,
           }}>
-          <Text>Hello!</Text>
-
-          <Button
-            title="Hide modal"
-            onPress={e => {
-              setShowModal(false);
-            }}
-          />
+          <View>
+            <Pressable
+              style={{
+                backgroundColor: 'rgb(51, 138, 232)',
+                paddingHorizontal: 15,
+                paddingVertical: 8,
+                borderRadius: 6,
+              }}
+              onPress={e => {
+                setShowModal(true);
+              }}>
+              <Text style={{color: 'white'}}>Click here</Text>
+            </Pressable>
+          </View>
         </View>
-      </Modal>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          paddingTop: 400,
-        }}>
-        <View>
-          <Pressable
-            style={{
-              backgroundColor: 'rgb(51, 138, 232)',
-              paddingHorizontal: 15,
-              paddingVertical: 8,
-              borderRadius: 6,
-            }}
-            onPress={e => {
-              setShowModal(true);
-            }}>
-            <Text style={{color: 'white'}}>Click here</Text>
-          </Pressable>
-        </View>
+        <Toast />
       </View>
-      <Toast />
-    </View>
+    </ContentTemplate>
   );
 }
