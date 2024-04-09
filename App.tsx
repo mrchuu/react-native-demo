@@ -9,14 +9,31 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesignIcons from 'react-native-vector-icons/AntDesign';
 import {useTheme} from 'react-native-paper';
 import Contact from './src/view/content/Contact';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
+const Drawer = createDrawerNavigator();
+const DrawerTabs = () => (
+  <Drawer.Navigator>
+    <Drawer.Screen
+      name="Content"
+      component={ContentTabs}
+      options={{headerShown: false}}
+    />
+    <Drawer.Screen
+      name="PendingChat"
+      component={Chat}
+      options={{headerShown: false}}
+    />
+  </Drawer.Navigator>
+);
 const ContentTabs = () => (
   <Tab.Navigator
     barStyle={{backgroundColor: 'rgb(242, 242, 242)'}}
     shifting={false}
-    activeColor="#097BDA">
+    activeColor="#097BDA"
+    initialRouteName="Chat">
     <Tab.Screen
       name="Chat"
       component={Chat}
@@ -46,9 +63,10 @@ const ContentTabs = () => (
     />
   </Tab.Navigator>
 );
+
 export default function App() {
   const theme = useTheme();
-  theme.colors.secondaryContainer = 'transperent';
+  theme.colors.secondaryContainer = 'transparent';
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
@@ -58,8 +76,8 @@ export default function App() {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Content"
-          component={ContentTabs}
+          name="Main"
+          component={DrawerTabs}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

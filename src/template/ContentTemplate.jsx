@@ -1,14 +1,18 @@
+import {useNavigation} from '@react-navigation/native';
 import {Pressable, Text, View} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import AntDesignIcons from 'react-native-vector-icons/AntDesign';
+
 export default function ContentTemplate({children, title}) {
+  const navigation = useNavigation();
   return (
-    <View style={{flex: 1, padding: 10}}>
+    <SafeAreaView style={{flex: 1, padding: 10}}>
       <View
         style={{
           flexDirection: 'row',
           alignItems: 'center',
           height: 50,
-        //   backgroundColor: 'red',
+          //   backgroundColor: 'red',
         }}>
         <View
           style={{
@@ -28,7 +32,7 @@ export default function ContentTemplate({children, title}) {
               },
             ]}
             onPress={e => {
-              console.log('hehe');
+              navigation.toggleDrawer();
             }}>
             <AntDesignIcons name="bars" size={20} />
           </Pressable>
@@ -38,6 +42,6 @@ export default function ContentTemplate({children, title}) {
         </Text>
       </View>
       {children}
-    </View>
+    </SafeAreaView>
   );
 }

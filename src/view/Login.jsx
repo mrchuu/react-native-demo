@@ -28,7 +28,7 @@ export default function Login() {
                 borderRadius: 6,
               }}
               onPress={() => {
-                navigation.navigate('Content');
+                navigation.navigate('Main');
 
               }}>
               <Text style={{color: 'white', textAlign: 'center'}}>Login</Text>
