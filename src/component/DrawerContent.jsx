@@ -19,15 +19,15 @@ import {
 import {MaterialCommunityIcons} from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function DrawerContent(props) {
-  const styles = StyleSheet.create({
-  });
+  const theme = useTheme();
+  const styles = StyleSheet.create({});
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: theme.colors.secondary}}>
       <View>
         <Text>Troi dat dung hoa</Text>
       </View>
-      <DrawerContentScrollView {...props}>
-        <DrawerItemList {...props} />
+      <DrawerContentScrollView {...props} >
+        <DrawerItemList {...props}  />
       </DrawerContentScrollView>
     </View>
   );

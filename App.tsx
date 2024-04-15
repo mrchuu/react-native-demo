@@ -16,25 +16,29 @@ import DrawerContent from './src/component/DrawerContent';
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 const Drawer = createDrawerNavigator();
-const DrawerTabs = () => (
-  <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
-    <Drawer.Screen
-      name="Content"
-      component={ContentTabs}
-      options={{headerShown: false}}
-    />
-    <Drawer.Screen
-      name="PendingChat"
-      component={Chat}
-      options={{headerShown: false}}
-    />
-    <Drawer.Screen
-      name="Setting"
-      component={Setting}
-      options={{headerShown: false}}
-    />
-  </Drawer.Navigator>
-);
+
+const DrawerTabs = () => {
+  const theme = useTheme();
+  return (
+    <Drawer.Navigator screenOptions={{drawerInactiveTintColor: (theme.colors as any).textSecondary}} drawerContent={props => <DrawerContent {...props} />}>
+      <Drawer.Screen
+        name="Content"
+        component={ContentTabs}
+        options={{headerShown: false}}
+      />
+      <Drawer.Screen
+        name="PendingChat"
+        component={Chat}
+        options={{headerShown: false}}
+      />
+      <Drawer.Screen
+        name="Setting"
+        component={Setting}
+        options={{headerShown: false}}
+      />
+    </Drawer.Navigator>
+  );
+};
 const ContentTabs = () => {
   const theme = useTheme();
   return (
