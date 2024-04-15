@@ -7,9 +7,9 @@ import App from './App';
 import {name as appName} from './app.json';
 import {DefaultTheme, PaperProvider} from 'react-native-paper';
 import 'react-native-gesture-handler';
-import {darkTheme, lightTheme} from "./src/util/Theme.jsx"
-const isDarkTheme = true;
-const theme = isDarkTheme ? darkTheme : lightTheme
+import {darkTheme, lightTheme} from './src/util/Theme.jsx';
+const isDarkTheme = false;
+const theme = isDarkTheme ? darkTheme : lightTheme;
 const root = () => {
   return (
     <PaperProvider theme={theme}>

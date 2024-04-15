@@ -21,6 +21,7 @@ import ContentTemplate from '../../template/ContentTemplate';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {useTheme} from 'react-native-paper';
 import ActiveContacts from '../../component/Chat/ActiveContacts';
+import Conversation from '../../component/Chat/Conversations';
 export default function Chat() {
   const theme = useTheme();
   const styles = StyleSheet.create({
@@ -150,7 +151,9 @@ export default function Chat() {
           <View style={styles.activeContact}>
             <ActiveContacts />
           </View>
-          <View style={{flex: 1, paddingTop: 10}}></View>
+          <View style={{flex: 1, paddingTop: 10}}>
+            <Conversation />
+          </View>
         </View>
         <Toast />
       </View>

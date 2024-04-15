@@ -17,7 +17,7 @@ const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 const DrawerTabs = () => (
-  <Drawer.Navigator >
+  <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
     <Drawer.Screen
       name="Content"
       component={ContentTabs}
