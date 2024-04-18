@@ -1,6 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import Login from './src/view/Login';
+import Login from './src/view/content/welcome/Login';
 import Chat from './src/view/content/Chat';
 import Story from './src/view/content/Story';
 import {createMaterialBottomTabNavigator} from 'react-native-paper/react-navigation';
@@ -12,6 +12,7 @@ import Contact from './src/view/content/Contact';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Setting from './src/view/Setting';
 import DrawerContent from './src/component/DrawerContent';
+import Welcome from './src/view/content/welcome/Welcome';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -83,10 +84,15 @@ export default function App() {
   const theme = useTheme();
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="Welcome">
         <Stack.Screen
           name="Login"
           component={Login}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Welcome"
+          component={Welcome}
           options={{headerShown: false}}
         />
         <Stack.Screen

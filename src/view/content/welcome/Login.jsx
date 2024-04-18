@@ -1,12 +1,12 @@
 import {ImageBackground, Pressable, Text, View, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {useTheme} from "react-native-paper"
+import {useTheme} from 'react-native-paper';
 export default function Login() {
   const navigation = useNavigation();
   const theme = useTheme();
   return (
     <ImageBackground
-      source={require('../assets/cassette-wall-art.webp')}
+      source={require('../../../assets/cassette-wall-art.webp')}
       style={{flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
       <View
         style={{
@@ -30,7 +30,10 @@ export default function Login() {
               onPress={() => {
                 navigation.navigate('Main');
               }}>
-              <Text style={{color: theme.colors.textPrimary, textAlign: 'center'}}>Login</Text>
+              <Text
+                style={{color: theme.colors.textPrimary, textAlign: 'center'}}>
+                Login
+              </Text>
             </Pressable>
           </View>
           <View style={{flex: 4}}></View>
